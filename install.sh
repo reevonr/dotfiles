@@ -9,3 +9,6 @@ brew update
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 omz update
+
+mkdir -p ~/.config/zsh/autocompletions
+chezmoi completion zsh --output=~/.config/zsh/autocompletions/chezmoi.zsh
