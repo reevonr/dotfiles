@@ -1,6 +1,7 @@
-[user]
-	name = reevo
-	email = reevor@sahaj.ai
+[include]
+	path=.gitconfig-sahaj
+[includeIf "hasconfig:remote.*.url:https://**/tmlconnected/**"]
+	path=.gitconfig-tml
 [core]
 	excludesfile = /Users/reevonr/.gitignore_global
 [pull]
