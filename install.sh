@@ -12,3 +12,5 @@ omz update
 
 mkdir -p ~/.config/zsh/autocompletions
 chezmoi completion zsh --output=~/.config/zsh/autocompletions/chezmoi.zsh
+
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
