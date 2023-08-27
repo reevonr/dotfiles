@@ -30,7 +30,7 @@ SCRIPTDIR=~/Documents/projects/tml/ep-infrastructure/scripts
 
 
 
-_default_tml_context="mes4"
+_default_tml_context="ep"
 tml() {
     source $SCRIPTDIR/tml.sh
     export PATH=$SCRIPTDIR:$PATH
