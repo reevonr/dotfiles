@@ -3,6 +3,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/reevonr/Library/Application Support/JetBrains/Toolbox/scripts"
 export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
 export EC2CLI_OS_ARCH=ec2-cli-darwin-arm64
+export CHEAT_USE_FZF=true
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
