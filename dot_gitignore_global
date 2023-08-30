@@ -5,7 +5,7 @@
 .gradle
 build
 bin
-
+.envrc
 # Created by https://www.toptal.com/developers/gitignore/api/java,python,kotlin,macos,intellij+all,vs,gradle
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,python,kotlin,macos,intellij+all,vs,gradle
 

@@ -12,5 +12,4 @@ function setnl(key,call)
 end
 require("reevonr.core.options")
 require("reevonr.core.keymaps")
-require("reevonr.core.colorscheme")
 require("reevonr.plugins-setup")
