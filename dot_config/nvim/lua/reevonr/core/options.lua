@@ -27,3 +27,6 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+vim.cmd([[set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case]])
+vim.cmd([[set grepformat=%f:%l:%c:%m,%f:%l:%m]])

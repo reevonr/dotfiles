@@ -1,15 +1,14 @@
 local km = vim.keymap
-function set(mode,key,call)
-  km.set(mode,key,call)  
+function set(mode, key, call, desc)
+	km.set(mode, key, call, desc)
 end
 
-function setn(key,call)
-  km.set("n",key,call)  
+function setn(key, call, desc)
+	km.set("n", key, call, desc)
 end
 
-function setnl(key,call)
-  km.set("n",("<leader>"..key),call)  
+function setnl(key, call, desc)
+	km.set("n", ("<leader>" .. key), call, desc)
 end
-require("reevonr.core.options")
-require("reevonr.core.keymaps")
+require("reevonr.core")
 require("reevonr.plugins-setup")

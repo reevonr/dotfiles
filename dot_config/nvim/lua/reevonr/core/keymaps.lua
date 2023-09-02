@@ -1,19 +1,13 @@
 vim.g.mapleader = " "
 
-setnl("nh", ":nohl<CR>")
-setn("x",'"_x')
+setnl("nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
-setnl("+","<C-a>")
-setnl("-","<C-x>")
+setnl("wsv", "<C-w>v", { desc = "Split window vertically" })
+setnl("wsh", "<C-w>s", { desc = "Split window horizontally" })
+setnl("wse", "<C-w>=", { desc = "Make splits equal size" })
+setnl("px", ":close<CR>", { desc = "Close current split" })
 
-setnl("|","<C-w>v")
-setnl("-","<C-w>s")
-setnl("se","<C-w>=")
-setnl("sx",":close<CR>")
-
-
-setnl("to",":tabnew<CR>")
-setnl("tx",":tabclose<CR>")
-setnl("tn",":tabn<CR>")
-setnl("tp",":tabp<CR>")
-
+setnl("to", ":tabnew<CR>", { desc = "Open new tab" })
+setnl("tx", ":tabclose<CR>", { desc = "Close current tab" })
+setnl("tn", ":tabn<CR>", { desc = "Go to next tab" })
+setnl("tp", ":tabp<CR>", { desc = "Go to prev tab" })
