@@ -15,7 +15,15 @@ return {
 		local mason_null_ls = require("mason-null-ls")
 
 		-- enable mason
-		mason.setup()
+		mason.setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
 
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
