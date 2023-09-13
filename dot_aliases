@@ -2,4 +2,7 @@ alias python=python3
 alias tf=terraform
 alias cat=bat
 alias catgln='git --no-pager log --format="%Creset%h | %cr | %Cgreen%cN%n-- %Cred%s" -n '
-alias nv=nvim
+alias n=nvim
+alias cd=z
+alias cdi=zi
+alias ls=exa
