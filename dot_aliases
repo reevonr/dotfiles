@@ -3,4 +3,14 @@ alias tf=terraform
 alias cat=bat
 alias catgln='git --no-pager log --format="%Creset%h | %cr | %Cgreen%cN%n-- %Cred%s" -n '
 alias n=nvim
-alias ls=exa
+
+alias t="tmux"
+alias tk="tmux kill-session -t"
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t"
+alias tn="tmux new -s"
+
+alias ls="exa --icons"
+alias ll="exa -l --icons"
+alias la="exa -la --icons"
+alias tree="exa -T --icons --git-ignore"

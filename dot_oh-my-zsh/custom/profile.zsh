@@ -40,3 +40,12 @@ tml() {
 tml_info(){
   echo "tml env context"
 }
+
+function gt() {
+  command="./gradlew clean test --tests \"*${1:-}*\""
+  echo "executing: $command"
+  eval "$command"
+}
+
+
+
