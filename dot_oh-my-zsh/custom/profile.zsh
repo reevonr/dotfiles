@@ -1,9 +1,11 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/reevonr/Library/Application Support/JetBrains/Toolbox/scripts"
-export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
 export EC2CLI_OS_ARCH=ec2-cli-darwin-arm64
 export CHEAT_USE_FZF=true
+export TERM=screen-256color
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -42,9 +44,13 @@ tml_info(){
 }
 
 function gt() {
-  command="./gradlew clean test --tests \"*${1:-}*\""
-  echo "executing: $command"
-  eval "$command"
+  # if [ $# -gt 0 ] 
+  # then
+    # echo "arg passed"
+    # command="--tests \"${1:-}\""
+  # fi   
+  # echo "executing: $command"
+  eval "./gradlew spotlessJava test"
 }
 
 

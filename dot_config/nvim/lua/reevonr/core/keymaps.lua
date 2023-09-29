@@ -1,13 +1,26 @@
-vim.g.mapleader = " "
+local M = {}
 
-SETNL("nh", ":nohl<CR>", { desc = "Clear search highlights" })
+local function bind(op, outer_opts)
+  outer_opts = outer_opts or { noremap = true }
+  return function(lhs, rhs, opts)
+    opts = vim.tbl_extend("force", outer_opts, opts or {})
+    vim.keymap.set(op, lhs, rhs, opts)
+  end
+end
+local function bindvnl()
+  return function(lhs, rhs, opts) M.nnoremap("<leader>" .. lhs, rhs, opts) end
+end
 
-SETNL("wsv", "<C-w>v", { desc = "Split window vertically" })
-SETNL("wsh", "<C-w>s", { desc = "Split window horizontally" })
-SETNL("wse", "<C-w>=", { desc = "Make splits equal size" })
-SETNL("px", ":close<CR>", { desc = "Close current split" })
+M.nmap = bind("n", { noremap = false })
+M.nnoremap = bind("n")
+M.nlnoremap = bindvnl()
+M.vnoremap = bind("v")
+M.xnoremap = bind("x")
+M.inoremap = bind("i")
+M.tnoremap = bind("t")
 
-SETNL("to", ":tabnew<CR>", { desc = "Open new tab" })
-SETNL("tx", ":tabclose<CR>", { desc = "Close current tab" })
-SETNL("tn", ":tabn<CR>", { desc = "Go to next tab" })
-SETNL("tp", ":tabp<CR>", { desc = "Go to prev tab" })
+local km = vim.keymap
+
+local function setn(key, call, desc) km.set("n", key, call, desc) end
+
+return M

@@ -4,10 +4,6 @@ return {
   config = function()
     local nvimtree = require("nvim-tree")
 
-    -- recommended settings from nvim-tree documentation
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-
     -- change color for arrows in tree to light blue
     vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
@@ -39,9 +35,6 @@ return {
           },
         },
       },
-      filters = {
-        custom = { ".DS_Store" },
-      },
       git = {
         ignore = false,
       },
@@ -56,11 +49,14 @@ return {
       modified = {
         enable = true,
       },
+      filters = {
+        git_ignored = true,
+        dotfiles = true,
+        git_clean = false,
+        no_buffer = false,
+        custom = { ".DS_Store" },
+        exclude = {},
+      },
     })
-
-    SETNL("ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-    SETNL("ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
-    SETNL("ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-    SETNL("er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
   end,
 }
