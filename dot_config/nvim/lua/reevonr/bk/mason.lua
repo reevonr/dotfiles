@@ -2,8 +2,11 @@ return {
   "williamboman/mason.nvim",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
-    "jayp0521/mason-null-ls.nvim",
+    "mfussenegger/nvim-dap",
+    "jay-babu/mason-null-ls.nvim",
   },
+  build = ":MasonUpdate",
+  cmd = "Mason",
   config = function()
     -- import mason plugin safely
     local mason = require("mason")
@@ -15,15 +18,7 @@ return {
     local mason_null_ls = require("mason-null-ls")
 
     -- enable mason
-    mason.setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      },
-    })
+    mason.setup({})
 
     mason_lspconfig.setup({
       -- list of servers for mason to install
@@ -31,7 +26,6 @@ return {
         "tsserver",
         "html",
         "cssls",
-        "lua_ls",
         "terraformls",
         "tflint",
         "dockerls",
@@ -47,12 +41,11 @@ return {
       -- list of formatters & linters for mason to install
       ensure_installed = {
         "prettier", -- ts/js formatter
-        "stylua", -- lua formatter
         "eslint_d", -- ts/js linter
         "tfsec",
       },
       -- auto-install configured servers (with lspconfig)
-      automatic_installationhelm_ls = true,
+      automatic_installation = true,
     })
   end,
 }

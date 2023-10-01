@@ -1,7 +1,36 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "DaikyXendo/nvim-material-icon" },
+  keys = {
+    {
+      "<leader>te",
+      "<cmd>NvimTreeToggle<CR>",
+      mode = "n",
+      desc = "Toggle file explorer",
+    },
+    {
+      "<leader>te",
+      "<cmd>NvimTreeFindFileToggle<CR>",
+      mode = "n",
+      desc = "Toggle file explorer on current file",
+    },
+    {
+      "<leader>tc",
+      "<cmd>NvimTreeCollapse<CR>",
+      mode = "n",
+      desc = "Collapse file explorer",
+    },
+    {
+      "<leader>tr",
+      "<cmd>NvimTreeRefresh<CR>",
+      mode = "n",
+      desc = "Refresh file explorer",
+    },
+  },
   config = function()
+    local keys = { mode = { "n" }, ["<leader>t"] = { name = "+NvimTree" } }
+    require("which-key").register(keys)
+
     local nvimtree = require("nvim-tree")
 
     -- change color for arrows in tree to light blue
@@ -51,7 +80,7 @@ return {
       },
       filters = {
         git_ignored = true,
-        dotfiles = true,
+        dotfiles = false,
         git_clean = false,
         no_buffer = false,
         custom = { ".DS_Store" },

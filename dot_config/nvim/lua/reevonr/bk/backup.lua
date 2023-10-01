@@ -2,29 +2,28 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "jose-elias-alvarez/typescript.nvim",
     "hrsh7th/cmp-nvim-lsp",
     {
       "smjonas/inc-rename.nvim",
       config = true,
     },
-    { "antosha417/nvim-lsp-file-operations", config = true },
+    { "j-hui/fidget.nvim", config = true },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "jay-babu/mason-null-ls.nvim",
   },
+
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-    -- import typescript plugin
-    local typescript = require("typescript")
 
     local keymap = vim.keymap -- for conciseness
     local Remap = require("reevonr.core.keymaps")
     local setnl = Remap.nlnoremap
     local setn = Remap.nnoremap
-    local setn = Remap.vnoremap
+    local setv = Remap.vnoremap
 
     -- enable keybinds only for when lsp server available
     local on_attach = function(client, bufnr)
@@ -72,48 +71,12 @@ return {
       setnl("rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
       -- typescript specific keymaps (e.g. rename file and update imports)
-      if client.name == "tsserver" then
-        opts.desc = "Rename file and update file imports"
-        setnl("rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-
-        opts.desc = "Rename file and update file imports"
-        setnl("oi", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
-
-        opts.desc = "Remove unused imports"
-        setnl("ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
-      end
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
     -- configure html server
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure typescript server with plugin
-    typescript.setup({
-      server = {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      },
-    })
-
-    -- configure css server
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
 
     lspconfig["terraformls"].setup({
       capabilities = capabilities,
@@ -139,12 +102,6 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
-
-    lspconfig["bashls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
