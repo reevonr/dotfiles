@@ -8,8 +8,48 @@ return {
     "nvim-tree/nvim-web-devicons",
     "ThePrimeagen/harpoon",
   },
-  lazy = false,
+  keys = {
+    {
+      "<leader>ff",
+      "<cmd>Telescope find_files<cr>",
+      mode = "n",
+      desc = "Fuzzy find files in cwd",
+    },
+    {
+      "<leader>fr",
+      "<cmd>Telescope oldfiles<cr>",
+      mode = "n",
+      desc = "Fuzzy find recent files",
+    },
+    {
+      "<leader>fg",
+      "<cmd>Telescope live_grep<cr>",
+      mode = "n",
+      desc = "Find string in cwd",
+    },
+    {
+      "<leader>fc",
+      "<cmd>Telescope grep_string<cr>",
+      mode = "n",
+      desc = "Find string under cursor in cwd",
+    },
+    {
+      "<leader>fb",
+      "<cmd>Telescope buffers<cr>",
+      mode = "n",
+      desc = "Show open buffers",
+    },
+    {
+      "<leader>fh",
+      "<cmd>Telescope harpoon marks<cr>",
+      mode = "n",
+      desc = "Show harpoon marks",
+    },
+  },
   config = function()
+    local keys = { mode = { "n" }, ["<leader>f"] = { name = "+Telescope" } }
+    require("which-key").register(keys)
+
     -- import telescope plugin safely
     local telescope = require("telescope")
 
@@ -23,7 +63,18 @@ return {
     telescope.setup({
       -- configure custom mappings
       defaults = {
+        layout_strategy = "vertical",
         path_display = { "truncate" },
+        layout_config = {
+          height = 0.99,
+          width = 0.99,
+          vertical = {
+            prompt_position = "top",
+            mirror = true,
+            preview_cutoff = 0,
+          },
+        },
+        preview = true,
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
