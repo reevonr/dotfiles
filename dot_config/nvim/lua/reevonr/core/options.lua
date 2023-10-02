@@ -41,8 +41,7 @@ local options = {
   titlestring = "Nvim - %t",
   guifont = "MesloLGS NF:h18",
   backspace = "indent,eol,start",
-   background = "dark",
-  -- tokyonight_dark_float = false,
+  background = "dark",
 }
 
 local opt = vim.opt
