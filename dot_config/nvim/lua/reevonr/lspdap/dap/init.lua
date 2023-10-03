@@ -39,6 +39,9 @@ return {
   },
     opts = {},
     config = function(plugin, opts)
+      local wk = require("which-key")
+      local keys = { mode = { "n", "v" }, ["<leader>d"] = { name = "+Dap" } }
+      wk.register(keys)
       require("nvim-dap-virtual-text").setup({
         commented = true,
       })

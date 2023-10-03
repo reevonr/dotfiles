@@ -1,7 +1,7 @@
 return {
   server_start = {
-    java = false,
-    lua = true,
     iac = true,
-  },
+    lua = true,
+    java = true,
+  }
 }

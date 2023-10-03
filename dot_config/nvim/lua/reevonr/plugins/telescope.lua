@@ -47,8 +47,7 @@ return {
     },
   },
   config = function()
-    local keys = { mode = { "n" }, ["<leader>f"] = { name = "+Telescope" } }
-    require("which-key").register(keys)
+    require("which-key").register({ mode = { "n" }, ["<leader>f"] = { name = "+Telescope" } })
 
     -- import telescope plugin safely
     local telescope = require("telescope")

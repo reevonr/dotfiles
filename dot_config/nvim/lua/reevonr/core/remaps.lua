@@ -13,6 +13,8 @@ tnoremap("<D-v>", function()
   vim.api.nvim_feedkeys(keys, "n", false)
 end, silent)
 
+--require("which-key").register({ mode = { "n" }, ["<leader>t"] = { name = "+Tab" } })
+
 --Tab management
 setnl("to", ":tabnew<CR>", { desc = "Open new tab" })
 setnl("tx", ":tabclose<CR>", { desc = "Close current tab" })
@@ -29,31 +31,7 @@ setnl("hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "Go to pre
 
 --Auto-sessions
 
-setnl("wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
-setnl("ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" }) -- save workspace session for current working directory
-
 -- Trouble remaps
-setnl("<F2>", "<cmd>TroubleToggle<cr>", { desc = "toggle trouble tree" })
-setnl(
-  "tw",
-  "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  { desc = "workspace diagnostics from the builtin LSP client" }
-)
-setnl(
-  "td",
-  "<cmd>TroubleToggle document_diagnostics<cr>",
-  { desc = "document diagnostics from the builtin LSP client" }
-)
-setnl("tq", "<cmd>TroubleToggle quickfix<cr>", { desc = "quickfix items" })
-setnl("tl", "<cmd>TroubleToggle loclist<cr>", { desc = "items from the window's location list" })
-setnl(
-  "tR",
-  "<cmd>TroubleToggle lsp_references<cr>",
-  { desc = "references of the word under the cursor from the builtin LSP client" }
-)
-
--- Undo Tree
-setnl("u", vim.cmd.UndotreeToggle)
 
 --setnl("gc", "<cmd>Telescope git_commits<cr>", { desc = "Show git commits" }) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
 --keymap.set(

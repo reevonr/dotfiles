@@ -12,3 +12,4 @@ vim.g.loaded_python3_provider = 0
 
 require("reevonr.core")
 require("reevonr.plugins-setup")
+require("reevonr.config.autocmd")

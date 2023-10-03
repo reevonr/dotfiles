@@ -1,14 +1,5 @@
 return {
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      defaults = {
-        ["<leader>l"] = { name = "+LSP" },
-      },
-    },
-  },
-  {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     cmd = "Mason",
@@ -40,6 +31,14 @@ return {
       else
         ensure_installed()
       end
+      --[[ local handlers = {
+        function(server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup({})
+        end,
+        ["jdtls"] = function() return end,
+        ["lua_ls"] = function() return end,
+      }
+      require("mason-lspconfig").setup_handlers(handlers) ]]
     end,
   },
 
@@ -53,21 +52,22 @@ return {
         "j-hui/fidget.nvim",
         tag = "legacy",
         event = "LspAttach",
-        opts = {
-          -- options
-        },
         config = true,
       },
-      -- "jay-babu/mason-null-ls.nvim",
     },
     opts = {
       servers = {},
       setup = {},
     },
-    config = function(plugin, opts) require("reevonr.lspdap.lsp.servers").setup(plugin, opts) end,
+    config = function(plugin, opts)
+      local wk = require("which-key")
+      local keys = { mode = { "n", "v" }, ["<leader>l"] = { name = "+Lsp" } }
+      wk.register(keys)
+      require("reevonr.lspdap.lsp.servers").setup(plugin, opts)
+    end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     opts = function()
@@ -80,5 +80,4 @@ return {
       }
     end,
   },
-  -- { "jay-babu/mason-null-ls.nvim", opts = { ensure_installed = nil, automatic_installation = true, automatic_setup = false } },
 }

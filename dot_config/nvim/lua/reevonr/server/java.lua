@@ -44,29 +44,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "java" }) end,
   },
+
   {
-    "williamboman/mason.nvim",
-    dependencies = {
-      {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-          local handlers = {
-            function(server_name) -- default handler (optional)
-              require("lspconfig")[server_name].setup({})
-            end,
-            ["jdtls"] = function() return end,
-            ["lua_ls"] = function() return end,
-          }
-          require("mason-lspconfig").setup_handlers(handlers)
-        end,
-      },
-    },
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "jdtls", "java-debug-adapter", "java-test", "google-java-format" })
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
       table.insert(opts.sources, nls.builtins.formatting.google_java_format)
@@ -75,12 +55,18 @@ return {
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
+    event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap", "neovim/nvim-lspconfig" },
-    config = function()
+    init = function()
       -- Autocmd
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "java" },
+
         callback = function()
+          local wk = require("which-key")
+          local keys = { mode = { "n", "v" }, ["<leader>lj"] = { name = "+Java" } }
+          wk.register(keys)
+
           -- LSP capabilities
           local jdtls = require("jdtls")
           local capabilities = require("reevonr.lspdap.lsp.utils").capabilities()
@@ -103,11 +89,6 @@ return {
               end
               vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
             end
-
-            -- Register keymappings
-            local wk = require("which-key")
-            local keys = { mode = { "n", "v" }, ["<leader>lj"] = { name = "+Java" } }
-            wk.register(keys)
 
             map("n", "<leader>ljo", jdtls.organize_imports, "Organize Imports")
             map("n", "<leader>ljv", jdtls.extract_variable, "Extract Variable")
