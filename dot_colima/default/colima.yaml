@@ -9,7 +9,7 @@ disk: 60
 
 # Size of the memory in GiB to be allocated to the virtual machine.
 # Default: 2
-memory: 6
+memory: 2
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
 # Default: host
@@ -107,11 +107,11 @@ docker: {}
 # vz is macOS virtualization framework and requires macOS 13
 #
 # Default: qemu
-vmType: vz
+vmType: qemu
 
 # Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
 # Default: false
-rosetta: true
+rosetta: false
 
 # Volume mount driver for the virtual machine (virtiofs, 9p, sshfs).
 #
@@ -146,12 +146,12 @@ layer: false
 # Custom provision scripts for the virtual machine.
 # Provisioning scripts are executed on startup and therefore needs to be idempotent.
 #
-# EXAMPLE - script exected as root
+# EXAMPLE - script executed as root
 # provision:
 #   - mode: system
 #     script: apk add htop vim
 #
-# EXAMPLE - script exected as user
+# EXAMPLE - script executed as user
 # provision:
 #   - mode: user
 #     script: |
@@ -191,3 +191,8 @@ mounts: []
 #
 # Default: {}
 env: {}
+
+# Enable cgroups v2 as a temporary workaround for https://github.com/abiosoft/colima/issues/764.
+# NOTE: this is incompatible with Kubernetes and Ubuntu Layer.
+# NOTE: this config will be removed in future versions.
+cgroupsV2: false

@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 -- highlight yanks
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = "bufcheck",
+  group = config_group,
   pattern = "*",
   callback = function() vim.highlight.on_yank({ timeout = 500 }) end,
 })

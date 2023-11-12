@@ -29,6 +29,12 @@ setnl("hm", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Mark fi
 setnl("hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", { desc = "Go to next harpoon mark" })
 setnl("hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "Go to previous harpoon mark" })
 
+-- window management
+setnl("w-", "<C-w>s", { desc = "Split window horizontally" })
+setnl("w|", "<C-w>v", { desc = "Split window vertically" })
+setnl("we", "<C-w>=", { desc = "Make splits equal size" })
+setnl("px", ":close<CR>", { desc = "Close current split" })
+
 --Auto-sessions
 
 -- Trouble remaps
@@ -42,8 +48,3 @@ setnl("hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "Go to pre
 --) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
 -- setnl("gb", "<cmd>Telescope git_branches<cr>",--[[   ]]{ desc = "Show git branches" }) -- list git branches (use <cr> to checkout) ["gb" for git branch]
 -- setnl("gs", "<cmd>Telescope git_status<cr>", { desc = "Show current git changes per file" }) -- list current changes per file with diff preview ["gs" for git status]
--- setnl("wsh", "<C-w>s", { desc = "Split window horizontally" })
--- setnl("wse", "<C-w>=", { desc = "Make splits equal size" })
--- setnl("px", ":close<CR>", { desc = "Close current split" })
-
--- setnl("wsv", "<C-w>v", { desc = "Split window vertically" })

@@ -12,7 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 eval "$(op completion zsh)"; compdef _op op
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 eval "$(colima completion zsh)"
 

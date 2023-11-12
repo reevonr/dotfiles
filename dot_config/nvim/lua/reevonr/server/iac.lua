@@ -12,7 +12,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
     },
-    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "terraform-ls", "helm-ls" }) end,
+    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "terraform-ls", "helm-ls", "hadolint" }) end,
   },
   {
     "nvimtools/none-ls.nvim",

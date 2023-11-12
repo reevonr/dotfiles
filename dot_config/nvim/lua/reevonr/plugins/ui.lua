@@ -184,5 +184,5 @@ return {
     },
     config = function(_, opts) require("cinnamon").setup(opts) end,
   },
-  { "eandrju/cellular-automaton.nvim", lazy = true },
+  { "eandrju/cellular-automaton.nvim", lazy = false },
 }
