@@ -5,7 +5,6 @@ export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
 export EC2CLI_OS_ARCH=ec2-cli-darwin-arm64
 export CHEAT_USE_FZF=true
-export TERM=xterm-256color
 export KUBE_EDITOR=nvim
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
