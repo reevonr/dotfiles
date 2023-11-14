@@ -53,6 +53,15 @@ return {
     end,
   },
   {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "java-test", "java-debug-adapter", "jdtls", "google-java-format" })
+    end,
+  },
+  {
     "mfussenegger/nvim-jdtls",
     ft = "java",
     event = "VeryLazy",

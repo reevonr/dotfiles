@@ -3,5 +3,5 @@ return {
     iac = true,
     lua = true,
     java = true,
-  }
+  },
 }

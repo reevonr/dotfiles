@@ -14,6 +14,10 @@ return {
           package_uninstalled = "✗",
         },
       },
+      registries = {
+        "file:/Users/reevonr/.local/share/nvim/mason/registries/mason-registry",
+        "github:mason-org/mason-registry",
+      },
     },
     config = function(_, opts)
       require("mason").setup(opts)
@@ -31,14 +35,6 @@ return {
       else
         ensure_installed()
       end
-      --[[ local handlers = {
-        function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup({})
-        end,
-        ["jdtls"] = function() return end,
-        ["lua_ls"] = function() return end,
-      }
-      require("mason-lspconfig").setup_handlers(handlers) ]]
     end,
   },
 
