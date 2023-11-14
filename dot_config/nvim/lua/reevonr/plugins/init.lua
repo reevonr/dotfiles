@@ -7,15 +7,20 @@ return {
     opts = {
       defaults = {
         ["<leader>t"] = { name = "+Tab" },
+        { mode = { "n" }, ["<leader><F1>"] = { name = "+NvimTree" } },
+        { mode = { "n" }, ["<leader><F2>"] = { name = "+Trouble" } },
+        ["<leader>w"] = { name = "+Window" },
+        ["<leader>h"] = { name = "+Harpoon" },
+        ["<leader>f"] = { name = "+Telescope" },
+        {
+          mode = { "n", "v" },
+          ["<leader>l"] = { name = "+Lsp" },
+          { prefix = "<leader>" },
+        },
+        ["<leader>d"] = { name = "+DAP" },
+        { mode = { "n", "v" }, ["<leader>lj"] = { name = "+Java" } },
       },
     },
-    config = function()
-      local Remap = require("reevonr.core.keymaps")
-      local setnl = Remap.nlnoremap
-      setnl("to", ":tabnew<CR>", { desc = "Open new tab" })
-      setnl("tx", ":tabclose<CR>", { desc = "Close current tab" })
-      setnl("tn", ":tabn<CR>", { desc = "Go to next tab" })
-      setnl("tp", ":tabp<CR>", { desc = "Go to prev tab" })
-    end,
+    config = function(_, opts) require("which-key").register(opts.defaults) end,
   },
 }

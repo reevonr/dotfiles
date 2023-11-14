@@ -1,14 +1,5 @@
 return {
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      defaults = {
-        ["<leader>d"] = { name = "+DAP" },
-      },
-    },
-  },
-  {
     "mfussenegger/nvim-dap",
     dependencies = {
       { "rcarriga/nvim-dap-ui" },
@@ -39,9 +30,6 @@ return {
   },
     opts = {},
     config = function(plugin, opts)
-      local wk = require("which-key")
-      local keys = { mode = { "n", "v" }, ["<leader>d"] = { name = "+Dap" } }
-      wk.register(keys)
       require("nvim-dap-virtual-text").setup({
         commented = true,
       })

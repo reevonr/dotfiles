@@ -1,20 +1,10 @@
 return {
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      defaults = {
-        ["<leader>u"] = { name = "Undotree" },
-      },
-    },
-  },
-  {
     "mbbill/undotree",
     keys = { { "<leader>u", "<cmd>UndotreeToggle<CR>", mode = { "n" }, desc = "Toggle undotree" } },
   },
   {
     "folke/trouble.nvim",
-    lazy = true,
     keys = {
       { "<leader><F2>t", "<cmd>TroubleToggle<cr>", { desc = "toggle trouble tree" } },
       {
@@ -35,7 +25,7 @@ return {
         { desc = "references of the word under the cursor from the builtin LSP client" },
       },
     },
-    config = function() require("which-key").register({ mode = { "n" }, ["<leader><F2>"] = { name = "+Trouble" } }) end,
+    config = function() end,
   },
   {
     "Shatur/neovim-session-manager",

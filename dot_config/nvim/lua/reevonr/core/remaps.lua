@@ -13,8 +13,6 @@ tnoremap("<D-v>", function()
   vim.api.nvim_feedkeys(keys, "n", false)
 end, silent)
 
---require("which-key").register({ mode = { "n" }, ["<leader>t"] = { name = "+Tab" } })
-
 --Tab management
 setnl("to", ":tabnew<CR>", { desc = "Open new tab" })
 setnl("tx", ":tabclose<CR>", { desc = "Close current tab" })
@@ -24,7 +22,6 @@ setnl("tp", ":tabp<CR>", { desc = "Go to prev tab" })
 --Buffer management
 
 --harpoon
--- setnl("hf", , { desc =  }) -- show harpoon marks
 setnl("hm", "<cmd>lua require('harpoon.mark').add_file()<cr>", { desc = "Mark file with harpoon" })
 setnl("hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", { desc = "Go to next harpoon mark" })
 setnl("hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", { desc = "Go to previous harpoon mark" })

@@ -46,7 +46,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       {
         "j-hui/fidget.nvim",
-        tag = "legacy",
         event = "LspAttach",
         config = true,
       },
@@ -55,12 +54,7 @@ return {
       servers = {},
       setup = {},
     },
-    config = function(plugin, opts)
-      local wk = require("which-key")
-      local keys = { mode = { "n", "v" }, ["<leader>l"] = { name = "+Lsp" } }
-      wk.register(keys)
-      require("reevonr.lspdap.lsp.servers").setup(plugin, opts)
-    end,
+    config = function(plugin, opts) require("reevonr.lspdap.lsp.servers").setup(plugin, opts) end,
   },
   {
     "nvimtools/none-ls.nvim",

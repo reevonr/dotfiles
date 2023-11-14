@@ -78,8 +78,6 @@ return {
     },
   },
   config = function(_, opts)
-    require("which-key").register({ mode = { "n" }, ["<leader><F1>"] = { name = "+NvimTree" } })
-
     -- change color for arrows in tree to light blue
     vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 

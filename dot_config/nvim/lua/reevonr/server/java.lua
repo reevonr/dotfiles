@@ -64,18 +64,12 @@ return {
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
-    event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap", "neovim/nvim-lspconfig" },
     init = function()
       -- Autocmd
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "java" },
-
         callback = function()
-          local wk = require("which-key")
-          local keys = { mode = { "n", "v" }, ["<leader>lj"] = { name = "+Java" } }
-          wk.register(keys)
-
           -- LSP capabilities
           local jdtls = require("jdtls")
           local capabilities = require("reevonr.lspdap.lsp.utils").capabilities()
