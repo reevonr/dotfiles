@@ -8,12 +8,14 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer", -- source for text in buffer
+      "zbirenbaum/copilot-cmp",
       "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local compare = require("cmp.config.compare")
+      require("copilot_cmp").setup()
       local source_names = {
         nvim_lsp = "(LSP)",
         luasnip = "(Snippet)",
@@ -27,8 +29,11 @@ return {
         luasnip = 1,
       }
       local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          return false
+        end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
       end
 
       cmp.setup({
@@ -94,21 +99,29 @@ return {
             "s",
             "c",
           }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-            if cmp.visible() then
-              local entry = cmp.get_selected_entry()
-              if not entry then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-              else
-                cmp.confirm()
-              end
+          ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words_before() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
               fallback()
             end
-          end, { "i", "s", "c" }),
+          end),
+          -- ["<Tab>"] = cmp.mapping(function(fallback)
+          --   -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+          --   if cmp.visible() then
+          --     local entry = cmp.get_selected_entry()
+          --     if not entry then
+          --       cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          --     else
+          --       cmp.confirm()
+          --     end
+          --   else
+          --     fallback()
+          --   end
+          -- end, { "i", "s", "c" }),
         }),
         sources = cmp.config.sources({
+          { name = "copilot", group_index = 1, max_item_count = 10 },
           { name = "nvim_lsp", group_index = 1, max_item_count = 10 },
           { name = "luasnip", group_index = 1, max_item_count = 10 },
           { name = "buffer", group_index = 2, max_item_count = 10 },
@@ -120,6 +133,7 @@ return {
             mode = "symbol", -- show only symbol annotations
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            symbol_map = { Copilot = "" },
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))

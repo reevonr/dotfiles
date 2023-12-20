@@ -6,7 +6,7 @@ return {
     dependencies = {
       "windwp/nvim-ts-autotag",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
+      -- "JoosepAlviste/nvim-ts-context-commentstring",
     },
     opts = { -- enable syntax highlighting
       highlight = { enable = true, additional_vim_regex_highlighting = { "org", "markdown" } },
@@ -34,11 +34,11 @@ return {
         "org",
         "query",
       },
-      -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
+      -- -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
+      -- context_commentstring = {
+      --   enable = true,
+      --   enable_autocmd = false,
+      -- },
       -- auto install above language parsers
       auto_install = true,
       textobjects = {

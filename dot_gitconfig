@@ -1,9 +1,11 @@
 [include]
 	path=.gitconfig-sahaj
 [includeIf "hasconfig:remote.*.url:https://**/tmlconnected/**"]
-	path=.gitconfig-tml
+  path=.gitconfig-tml
+[includeIf "gitdir:~/Documents/projects/personal/"]
+	path=.gitconfig-personal
 [core]
-	excludesfile = /Users/reevonr/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [pull]
 	rebase = true
 [init]

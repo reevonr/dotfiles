@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 -- Important: This will close anything non-buffer,
 -- including notifications, neotree, aerial...
 -- So if you need to keep them open, use 'VimLeavePre'.
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
   group = config_group,
   callback = function()
     if vim.bo.filetype ~= "git" and not vim.bo.filetype ~= "gitcommit" and not vim.bo.filetype ~= "gitrebase" then
