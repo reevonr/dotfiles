@@ -58,7 +58,7 @@ function update_bastion() {
   z ep-infrastructure
   cd terraform/bastion-access
   tml dev ep
-  tfp
-  tfa
+  tfswitch
+  tfp;tfa;
 }
 
