@@ -8,14 +8,14 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer", -- source for text in buffer
-      "zbirenbaum/copilot-cmp",
+      -- "zbirenbaum/copilot-cmp",
       "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local compare = require("cmp.config.compare")
-      require("copilot_cmp").setup()
+      -- require("copilot_cmp").setup()
       local source_names = {
         nvim_lsp = "(LSP)",
         luasnip = "(Snippet)",
@@ -121,7 +121,7 @@ return {
           -- end, { "i", "s", "c" }),
         }),
         sources = cmp.config.sources({
-          { name = "copilot", group_index = 1, max_item_count = 10 },
+          -- { name = "copilot", group_index = 1, max_item_count = 10 },
           { name = "nvim_lsp", group_index = 1, max_item_count = 10 },
           { name = "luasnip", group_index = 1, max_item_count = 10 },
           { name = "buffer", group_index = 2, max_item_count = 10 },

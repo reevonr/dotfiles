@@ -3,6 +3,6 @@ return {
     iac = true,
     lua = true,
     java = true,
-    python = true,
+    python = false,
   },
 }

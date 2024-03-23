@@ -15,7 +15,7 @@ return {
         },
       },
       registries = {
-        "file:/Users/reevonr/.local/share/nvim/mason/registries/mason-registry",
+        -- "file:/Users/reevonr/.local/share/nvim/mason/registries/mason-registry",
         "github:mason-org/mason-registry",
       },
     },

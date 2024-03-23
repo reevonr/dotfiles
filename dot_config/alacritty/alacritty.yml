@@ -47,7 +47,7 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 0
-    y: 0
+    y: 15
   decorations: transparent
   opacity: 0.93
   startup_mode: SimpleFullscreen
