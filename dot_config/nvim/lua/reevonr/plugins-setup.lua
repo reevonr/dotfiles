@@ -28,7 +28,11 @@ require("lazy").setup({
     cache = {
       enabled = true,
     },
-
+    -- ★  runtime/plugin/editorconfig.lua 2.77ms
+    --         ★  runtime/plugin/nvim.lua 2.79ms
+    --         ★  runtime/plugin/rplugin.vim 2.19ms
+    --         ★  runtime/plugin/shada.vim 1.67ms
+    --         ★  runtime/plugin/spellfile.vim 1.46ms
     rtp = {
       disabled_plugins = {
         "gzip",
@@ -36,7 +40,9 @@ require("lazy").setup({
         "matchparen",
         "tarPlugin",
         "tohtml",
-
+        "netrwPlugin",
+        "tutor",
+        "man",
         "zipPlugin",
       },
     },

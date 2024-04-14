@@ -7,10 +7,7 @@ local function get_jdtls()
   local jdtls = mason_registry.get_package("jdtls")
   local jdtls_path = jdtls:get_install_path()
   local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-  local SYSTEM = "linux"
-  if vim.fn.has("mac") == 1 then
-    SYSTEM = "mac"
-  end
+  local SYSTEM = "mac"
   local config = jdtls_path .. "/config_" .. SYSTEM
   local lombok = jdtls_path .. "/lombok.jar"
   return launcher, config, lombok
@@ -42,11 +39,13 @@ end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    ft = "java",
     opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "java" }) end,
   },
 
   {
     "nvimtools/none-ls.nvim",
+    ft = "java",
     opts = function(_, opts)
       local nls = require("null-ls")
       table.insert(opts.sources, nls.builtins.formatting.google_java_format)
@@ -54,13 +53,39 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    ft = "java",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
     },
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "java-test", "java-debug-adapter", "jdtls", "google-java-format" })
+      vim.list_extend(opts.ensure_installed, {
+        "java-test",
+        "java-debug-adapter",
+        "jdtls",
+        "google-java-format",
+      })
     end,
   },
+  -- {
+  --   "nvim-neotest/neotest",
+  --   ft = "java",
+  --   dependencies = {
+  --     "nvim-neotest/nvim-nio",
+  --     "nvim-lua/plenary.nvim",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "javapacr/neotest-java",
+  --   },
+  --   init = function()
+  --     require("neotest").setup({
+  --       adapters = {
+  --         require("neotest-java")({
+  --           ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
+  --         }),
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
@@ -84,7 +109,7 @@ return {
             vim.lsp.codelens.refresh()
             jdtls.setup_dap({ hotcodereplace = "auto" })
             require("jdtls.dap").setup_dap_main_class_configs()
-            require("jdtls.setup").add_commands()
+            -- require("jdtls.setup").add_commands()
 
             local map = function(mode, lhs, rhs, desc)
               if desc then
@@ -96,18 +121,16 @@ return {
             map("n", "<leader>ljo", jdtls.organize_imports, "Organize Imports")
             map("n", "<leader>ljv", jdtls.extract_variable, "Extract Variable")
             map("n", "<leader>ljc", jdtls.extract_constant, "Extract Constant")
+            map("n", "<leader>ljm", jdtls.extract_method, "Extract Method")
+
             map("n", "<leader>ljt", jdtls.test_nearest_method, "Test Nearest Method")
+            map("n", "<leader>ljtp", jdtls.pick_test, "Test pick Method")
             map("n", "<leader>ljT", jdtls.test_class, "Test Class")
             map("n", "<leader>lju", "<cmd>JdtUpdateConfig<cr>", "Update Config")
-            map("v", "<leader>ljv", "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", "Extract Variable")
-            map("v", "<leader>ljc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", "Extract Constant")
-            map("v", "<leader>ljm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", "Extract Method")
 
-            vim.api.nvim_create_autocmd("BufWritePost", {
+            vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "InsertLeave" }, {
               pattern = { "*.java" },
-              callback = function()
-                local _, _ = pcall(vim.lsp.codelens.refresh)
-              end,
+              callback = vim.lsp.codelens.refresh,
             })
           end
 
@@ -139,7 +162,7 @@ return {
 
             settings = {
               java = {
-                autobuild = { enabled = false },
+                autobuild = { enabled = true },
                 signatureHelp = { enabled = true },
                 contentProvider = { preferred = "fernflower" },
                 saveActions = {
@@ -191,17 +214,17 @@ return {
                     enabled = "all", -- literals, all, none
                   },
                 },
-                format = {
-                  enabled = false,
-                },
-                -- NOTE: We can set the formatter to use different styles
                 -- format = {
-                --   enabled = true,
-                --   settings = {
-                --     url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
-                --     profile = "GoogleStyle",
-                --   },
+                --   enabled = false,
                 -- },
+                -- NOTE: We can set the formatter to use different styles
+                format = {
+                  enabled = true,
+                  settings = {
+                    url = vim.fn.stdpath("config") .. "/lang-servers/intellij-java-google-style.xml",
+                    profile = "GoogleStyle",
+                  },
+                },
               },
             },
             init_options = {

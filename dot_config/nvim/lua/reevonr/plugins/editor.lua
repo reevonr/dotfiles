@@ -27,11 +27,11 @@ return {
     },
     config = function() end,
   },
-  {
-    "Shatur/neovim-session-manager",
-    opts = {},
-    lazy = false,
-  },
+  -- {
+  --   "Shatur/neovim-session-manager",
+  --   opts = {},
+  --   lazy = false,
+  -- },
   {
     "numToStr/Comment.nvim",
     keys = { { "gc", mode = { "n", "v" } }, { "gcc", mode = { "n", "v" } }, { "gbc", mode = { "n", "v" } } },

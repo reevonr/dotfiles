@@ -44,11 +44,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "j-hui/fidget.nvim",
-        event = "LspAttach",
-        config = true,
-      },
     },
     opts = {
       servers = {},

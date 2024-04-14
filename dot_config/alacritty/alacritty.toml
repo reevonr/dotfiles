@@ -1,0 +1,51 @@
+import = [
+"~/.config/alacritty/theme.toml",
+"~/.config/alacritty/keybindings.toml",
+]
+
+[colors]
+transparent_background_colors = false
+
+[cursor]
+style = "Beam"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "MesloLGS NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGS NF"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS NF"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS NF"
+
+[scrolling]
+history = 0
+
+[window]
+decorations = "transparent"
+opacity = 0.93
+option_as_alt = "Both"
+startup_mode = "SimpleFullscreen"
+
+[window.padding]
+x = 0
+y = 15
+
+[shell]
+args = ["new-session", "-A", "-D", "-s", "__"]
+program = "/opt/homebrew/bin/tmux"
+
+[keyboard]
+bindings =[{  key =  "S", mods = "Command",  chars = "\u0000\u0074\u0073" }]

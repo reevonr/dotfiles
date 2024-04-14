@@ -8,15 +8,15 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer", -- source for text in buffer
-      -- "zbirenbaum/copilot-cmp",
       "onsails/lspkind.nvim",
+      "windwp/nvim-autopairs",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local compare = require("cmp.config.compare")
-      -- require("copilot_cmp").setup()
       local source_names = {
+        codeium = "(Codeium)",
         nvim_lsp = "(LSP)",
         luasnip = "(Snippet)",
         buffer = "(Buffer)",
@@ -121,11 +121,11 @@ return {
           -- end, { "i", "s", "c" }),
         }),
         sources = cmp.config.sources({
-          -- { name = "copilot", group_index = 1, max_item_count = 10 },
-          { name = "nvim_lsp", group_index = 1, max_item_count = 10 },
-          { name = "luasnip", group_index = 1, max_item_count = 10 },
-          { name = "buffer", group_index = 2, max_item_count = 10 },
-          { name = "path", group_index = 2, max_item_count = 10 },
+          { name = "codeium", group_index = 1, max_item_count = 3 },
+          { name = "nvim_lsp", group_index = 1, max_item_count = 3 },
+          { name = "luasnip", group_index = 1, max_item_count = 3 },
+          { name = "buffer", group_index = 2, max_item_count = 3 },
+          { name = "path", group_index = 2, max_item_count = 3 },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -133,7 +133,7 @@ return {
             mode = "symbol", -- show only symbol annotations
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-            symbol_map = { Copilot = "" },
+            symbol_map = { Codeium = "", Copilot = "" },
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -146,6 +146,13 @@ return {
           }),
         },
       })
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+      -- import nvim-cmp plugin (completions plugin)
+      local cmp = require("cmp")
+
+      -- make autopairs and completion work together
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
   {

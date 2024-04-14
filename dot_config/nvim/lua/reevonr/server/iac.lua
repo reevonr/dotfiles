@@ -5,6 +5,7 @@ end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    ft = { "terraform,tf,terraform-vars,dockerfile" },
     opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "terraform", "dockerfile" }) end,
   },
   {
@@ -18,7 +19,7 @@ return {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      -- table.insert(opts.sources, nls.builtins.diagnostics.terraform_validate)
+      table.insert(opts.sources, nls.builtins.diagnostics.terraform_validate)
       table.insert(opts.sources, nls.builtins.diagnostics.hadolint)
     end,
   },

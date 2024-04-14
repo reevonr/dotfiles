@@ -31,17 +31,3 @@ setnl("w-", "<C-w>s", { desc = "Split window horizontally" })
 setnl("w|", "<C-w>v", { desc = "Split window vertically" })
 setnl("we", "<C-w>=", { desc = "Make splits equal size" })
 setnl("px", ":close<CR>", { desc = "Close current split" })
-
---Auto-sessions
-
--- Trouble remaps
-
---setnl("gc", "<cmd>Telescope git_commits<cr>", { desc = "Show git commits" }) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
---keymap.set(
---"n",
---	"<leader>gfc",
---	"<cmd>Telescope git_bcommits<cr>",
---	{ desc = "Show git commits for current buffer" }
---) -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
--- setnl("gb", "<cmd>Telescope git_branches<cr>",--[[   ]]{ desc = "Show git branches" }) -- list git branches (use <cr> to checkout) ["gb" for git branch]
--- setnl("gs", "<cmd>Telescope git_status<cr>", { desc = "Show current git changes per file" }) -- list current changes per file with diff preview ["gs" for git status]
