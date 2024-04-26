@@ -1,13 +1,11 @@
-cf() {
-  echo $(pwd | sed 's/.*\///g')
-}
-
 alias python=python3
 
 alias tf=terraform
 alias tfp='terraform plan -out=tfplan'
 alias tfa='terraform apply tfplan'
+
 alias cat=bat
+alias cd=z
 
 alias gl='git --no-pager log --format="%Creset%h | %cr | %Cgreen%cN%n-- %Cred%s" -n '
 alias gbp='git remote prune origin'
@@ -19,11 +17,7 @@ alias n=nvim
 alias ktl=kubectl
 alias ks=k9s
 
-alias t="tmux"
-alias tk="tmux kill-session -t"
 alias tl="tmux list-sessions"
-alias ta="tmux attach -t"
-alias tn="tmux new -s $(cf)"
 
 alias ls="exa --icons"
 alias ll="exa -l --icons"
