@@ -13,9 +13,15 @@ function profile(){
 }
 
 function update(){
-  brew upgrade
-  omz update
-  nvim --headless "+Lazy! sync" +qa
+  # brew upgrade
+  # omz update
+  # nvim --headless "+Lazy! sync" +qa
+  fzf --zsh > "$HOME/.completion/.fzf.sh"
+  kubectl completion zsh > "$HOME/.completion/.kubectl.sh"
+  k9s completion zsh  > "$HOME/.completion/.k9s.sh"
+  helm completion zsh > "$HOME/.completion/.helm.sh"
+  zoxide init zsh > $HOME/."completion/.zoxide.sh"
+  docker completion zsh > "$HOME/.completion/.docker.sh"
 }
 
 function gbd(){
@@ -33,8 +39,8 @@ ts(){
   if [ -z "$ses" ]; then
     return 0  # Exit successfully if the variable is empty
   fi
-  tmux new -d -s $ses >/dev/null "cd ~;$SHELL" 2>&1 || true 
-  # tmux switch-client -t $ses
+  tmux new -d -s $ses >/dev/null "cd $HOME;$SHELL" 2>&1 || true 
+  tmux switch-client -t $ses
 }
 
 tc(){

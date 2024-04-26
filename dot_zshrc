@@ -115,11 +115,22 @@ zstyle ':completion:*' fzf-search-display true
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 
+source "$HOME/.completion/.fzf.sh"
+source "$HOME/.completion/.zoxide.sh"
+source "$HOME/.completion/.kubectl.sh"
+source "$HOME/.completion/.k9s.sh"
+source "$HOME/.completion/.helm.sh"
+source "$HOME/.completion/.docker.sh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-source "$HOME/.fzf.zsh"
-
-
-source "$HOME/.zoxide.zsh"
 
 source "$HOME/.aliases.zsh"
+
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete aws 'p/*/`aws_completer`/'
+
+
