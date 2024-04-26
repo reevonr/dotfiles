@@ -16,7 +16,6 @@ function update(){
   brew upgrade
   omz update
   nvim --headless "+Lazy! sync" +qa
-  # nvim --headless -c 'execute "MasonUpdate"' -c 'qa'
 }
 
 function gbd(){
@@ -34,8 +33,8 @@ ts(){
   if [ -z "$ses" ]; then
     return 0  # Exit successfully if the variable is empty
   fi
-  tmux new -d -s $ses >/dev/null "cd ~;$SHELL" 2>&1 || true
-  tmux switch-client -t $ses
+  tmux new -d -s $ses >/dev/null "cd ~;$SHELL" 2>&1 || true 
+  # tmux switch-client -t $ses
 }
 
 tc(){

@@ -27,25 +27,9 @@ return {
     },
     config = function() end,
   },
-  -- {
-  --   "Shatur/neovim-session-manager",
-  --   opts = {},
-  --   lazy = false,
-  -- },
   {
     "numToStr/Comment.nvim",
     keys = { { "gc", mode = { "n", "v" } }, { "gcc", mode = { "n", "v" } }, { "gbc", mode = { "n", "v" } } },
     config = function(_, _) require("Comment").setup() end,
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup({
-  --       suggestion = { enabled = false },
-  --       panel = { enabled = false },
-  --     })
-  --   end,
-  -- },
 }

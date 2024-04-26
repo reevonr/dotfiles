@@ -4,7 +4,7 @@ import = [
 ]
 
 [colors]
-transparent_background_colors = false
+transparent_background_colors = true
 
 [cursor]
 style = "Beam"
@@ -44,8 +44,11 @@ x = 0
 y = 15
 
 [shell]
-args = ["new-session", "-A", "-D", "-s", "__"]
-program = "/opt/homebrew/bin/tmux"
+program = "/bin/zsh"
+args = ["-l","-c","tmux new-session -A -D -s __"]
+
+# program = "/opt/homebrew/bin/tmux"
+# args = ["new-session", "-A", "-D", "-s", "__"]
 
 [keyboard]
 bindings =[{  key =  "S", mods = "Command",  chars = "\u0000\u0074\u0073" }]

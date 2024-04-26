@@ -22,7 +22,7 @@ function update_bastion() {
   z bastion-access
   tml dev ep
   tfswitch
-  tfp;tfa;
+  terraform apply -auto-approve
   cd -
 }
 
@@ -35,8 +35,9 @@ function tmlssh(){
   if [ -z "$ec2Server" ]; then
     return 0  # Exit successfully if the variable is empty
   fi
-  pick=$(echo $ec2Server | awk '{print $tag}' )
-  ssh sahajsoft@$pick
+  echo $ec2Server
+  pick=$(echo $ec2Server | awk '{print $1}' )
+  TERM=xterm-256color ssh sahajsoft@$pick
 }
 
 function tmldcup(){
@@ -88,3 +89,12 @@ tmlaws(){
   aws-vault login "tml-$bu-$env"
 }
 
+function coverage(){
+  if [ "$AWS_PROFILE" != "tml-mes4-dev" ]; then
+    tml dev mes4
+  fi
+  
+  repo=$(basename `git rev-parse --show-toplevel`)
+  cov=$(aws s3 cp s3://tml-avantgarde-code-coverage/$repo/coverage -)
+  echo "$repo  $cov"
+}

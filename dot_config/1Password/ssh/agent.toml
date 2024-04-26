@@ -1,0 +1,15 @@
+[[ssh-keys]]
+item = "github-reevonr"
+vault = "TML"
+
+[[ssh-keys]]
+item = "github-javapacr"
+vault = "Personal"
+
+[[ssh-keys]]
+item = "campus-test-key-pair"
+vault = "Work"
+
+[[ssh-keys]]
+item = "id_rsa"
+vault = "Work"
