@@ -1,5 +1,5 @@
 return {
-  "nvim-tree/nvim-tree.lua",
+  "DaikyXendo/nvim-tree.lua",
   dependencies = { "DaikyXendo/nvim-material-icon" },
   opts = {
     view = {

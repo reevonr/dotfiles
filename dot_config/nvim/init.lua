@@ -2,8 +2,8 @@ local g = vim.g
 
 g.python3_host_prog = "/opt/homebrew/bin/python3"
 g.mapleader = " "
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+g.loaded_netrw = 0
+g.loaded_netrwPlugin = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0

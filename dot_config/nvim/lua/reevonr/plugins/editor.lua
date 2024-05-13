@@ -29,7 +29,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    keys = { { "gc", mode = { "n", "v" } }, { "gcc", mode = { "n", "v" } }, { "gbc", mode = { "n", "v" } } },
+    event = { "BufReadPre", "BufNewFile" },
     config = function(_, _) require("Comment").setup() end,
   },
 }

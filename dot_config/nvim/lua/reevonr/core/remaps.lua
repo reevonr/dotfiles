@@ -6,12 +6,12 @@ local nnoremap = Remap.nnoremap
 
 setnl("nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
-nnoremap("tt", "<Cmd>sp<CR> <Cmd>term<CR> <Cmd>resize 10N<CR> i", silent)
-tnoremap("<C-c><C-c>", "<C-\\><C-n>", silent)
-tnoremap("<D-v>", function()
-  local keys = vim.api.nvim_replace_termcodes("<C-\\><C-n>\"+pi", true, false, true)
-  vim.api.nvim_feedkeys(keys, "n", false)
-end, silent)
+--nnoremap("tt", "<Cmd>sp<CR> <Cmd>term<CR> <Cmd>resize 10N<CR> i", silent)
+--tnoremap("<C-c><C-c>", "<C-\\><C-n>", silent)
+--tnoremap("<D-v>", function()
+ -- local keys = vim.api.nvim_replace_termcodes("<C-\\><C-n>\"+pi", true, false, true)
+ -- vim.api.nvim_feedkeys(keys, "n", false)
+--end, silent)
 
 --Tab management
 setnl("to", ":tabnew<CR>", { desc = "Open new tab" })

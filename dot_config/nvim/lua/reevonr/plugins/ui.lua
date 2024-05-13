@@ -1,7 +1,6 @@
 return {
   {
     "nvim-tree/nvim-web-devicons",
-    event = "VeryLazy",
     dependencies = { "DaikyXendo/nvim-material-icon" },
     config = function()
       require("nvim-web-devicons").setup({
@@ -127,11 +126,10 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lualine = require("lualine")
-      local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+      -- local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
       -- configure lualine with modified theme
       lualine.setup({
@@ -173,9 +171,8 @@ return {
       })
     end,
   },
-  {
+  --[[ {
     "declancm/cinnamon.nvim",
-    lazy = false,
     options = {
       always_scroll = true,
       scroll_limit = -1,
@@ -183,8 +180,7 @@ return {
       extended_keymaps = true, -- Create extended keymaps.
       override_keymaps = true, -- The plugin keymaps will override any existing keymaps.
     },
-    config = function(_, opts) require("cinnamon").setup(opts) end,
-  },
+  }, ]]
   -- ,
   -- { "eandrju/cellular-automaton.nvim", lazy = false },
 }

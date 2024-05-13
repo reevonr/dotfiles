@@ -115,12 +115,21 @@ zstyle ':completion:*' fzf-search-display true
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 
-source "$HOME/.completion/.fzf.sh"
-source "$HOME/.completion/.zoxide.sh"
-source "$HOME/.completion/.kubectl.sh"
-source "$HOME/.completion/.k9s.sh"
-source "$HOME/.completion/.helm.sh"
-source "$HOME/.completion/.docker.sh"
+
+
+# eval "$(kubectl completion zsh )"
+# eval "$(k9s completion zsh )" 
+# eval "$(helm completion zsh)" 
+# eval "$(zoxide init zsh)" 
+# eval "$(docker completion zsh)" 
+# eval "$(op completion zsh)"
+# eval "$(kops completion zsh)"
+# eval "$(fzf --zsh)"
+
+for file in $HOME/.completion/.*.sh(N); do
+  source "$file"
+done
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -133,4 +142,4 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete aws 'p/*/`aws_completer`/'
 
-
+# source "$HOME/.completion/.op.sh"

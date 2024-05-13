@@ -20,6 +20,5 @@ export KUBE_EDITOR=nvim
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 export TMUX_CONFIG_DIR=$HOME/.config/tmux
 export TMUX_PLUGIN_DIR=$TMUX_CONFIG_DIR/plugins
-export TERM=alacritty
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SDKMAN_DIR="$HOME/.sdkman"

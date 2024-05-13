@@ -10,7 +10,7 @@ transparent_background_colors = true
 style = "Beam"
 
 [env]
-TERM = "alacritty"
+TERM = "xterm-256color"
 
 [font]
 size = 15.0
@@ -47,8 +47,6 @@ y = 15
 program = "/bin/zsh"
 args = ["-l","-c","tmux new-session -A -D -s __"]
 
-# program = "/opt/homebrew/bin/tmux"
-# args = ["new-session", "-A", "-D", "-s", "__"]
 
 [keyboard]
 bindings =[{  key =  "S", mods = "Command",  chars = "\u0000\u0074\u0073" }]
